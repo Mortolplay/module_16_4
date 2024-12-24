@@ -17,6 +17,7 @@ class User(BaseModel):
 async def get_all_users() -> List[User]:
     return users
 
+
 @app.post("/user/{user_name}/{age}", response_model=str)
 async def create_user(user: User, user_name: Annotated[str, Path(min_length=5, max_length=20, description="Enter username", example="OlegV")],
         age: int = Path(ge=18, le=120, description="Enter age", example=55)) -> str:
